@@ -267,8 +267,6 @@ def _header_footer(canvas, doc):
     canvas.line(MARGIN_LR, h - MARGIN_TB, w - MARGIN_LR, h - MARGIN_TB)
     canvas.line(MARGIN_LR, MARGIN_TB, w - MARGIN_LR, MARGIN_TB)
     canvas.setFont(FONT, 7)
-    canvas.drawString(MARGIN_LR, MARGIN_TB - 4 * mm,
-                      "国网江苏电力有限公司信息通信分公司")
     canvas.drawCentredString(w / 2, MARGIN_TB - 4 * mm,
                              f"— 第 {doc.page} 页 —")
     canvas.drawRightString(w - MARGIN_LR, MARGIN_TB - 4 * mm,
@@ -405,10 +403,6 @@ def build_pdf(json_path: str, output_path: str) -> str:
     story.append(Spacer(1, 15 * mm))
     story.append(HRFlowable(width="60%", thickness=0.5, color=C_LGRAY,
                             spaceAfter=4 * mm))
-    story.append(Paragraph(
-        "本报告由国网江苏电力有限公司信息通信分公司数据运营中心（人工智能中心）编制",
-        s_disclaimer,
-    ))
     story.append(Paragraph("仅供内部参考，不代表公司官方立场", s_disclaimer))
 
     doc.build(story, onFirstPage=_first_page_footer, onLaterPages=_header_footer)
